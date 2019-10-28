@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # web
 
 > 练习使用vuex状态管理
@@ -28,3 +29,7 @@ npm test
 ```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+=======
+# WeChatWordsFold
+微信朋友圈发布文字折叠功能
+>>>>>>> 74ad4f8c71f92c41ae36e2fee2b66e5d5b2757f3
