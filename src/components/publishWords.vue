@@ -26,7 +26,7 @@
 
 <script>
 import vList from "./vList";
-
+var  pasteStatus = false;
 export default {
   name: "publishWords",
   components: {
@@ -36,22 +36,25 @@ export default {
     return {
       // text:'hello'
       message: "",
-      list: []
+      list: [],
+    
     };
   },
+  mounted : function () {
+    this.$nextTick(function(){
+        document.querySelector('#editor').addEventListener('paste', pasteFunction=>{
+        pasteStatus = true
+        console.log(pasteStatus)
+      })
+    })
+
+  },
   methods: {
-
-
     submit: function() { 
       if (this.message === "") {
 				window.alert("请输入留言内容")
 			  return
-      }
-      var pasteStatus = false
-      document.querySelector('#editor').addEventListener('paste', function(even) {
-        pasteStatus = true
-        console.log(pasteStatus)
-    })
+      }     
         console.log(pasteStatus)
       // let test1 = document.querySelector('textarea')
       // test1.onpaste = e =>{
@@ -73,10 +76,8 @@ export default {
       list.unshift(comment);
       window.localStorage.setItem("cmts", JSON.stringify(list));
       this.message = "";
-      // this.$router.push({path:'/vList'})	
-    },
-    paste:function(){
-
+      this.pasteStatus = ""
+      this.$router.push({path:'/vList'})	
     },
     updateValue: function(event) {
       this.$emit("input", event.target.value);
