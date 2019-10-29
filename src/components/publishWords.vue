@@ -55,7 +55,7 @@ export default {
 				window.alert("请输入留言内容")
 			  return
       }     
-        console.log(pasteStatus)
+        // console.log(pasteStatus)
       // let test1 = document.querySelector('textarea')
       // test1.onpaste = e =>{
       //    let clipboardData = (e.clipboardData || window.clipboardData); // 兼容处理
