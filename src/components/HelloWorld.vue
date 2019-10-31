@@ -1,15 +1,16 @@
 <template>
   <div class="hello">
     <div>
-      <h2>{{this.$store.state.count}}</h2>
-      <h2>{{this.$store.getters.increament}}</h2>
+      <h2>a{{ this.$store.state.count }}</h2>
+      <h2>b{{this.$store.getters.increament}}</h2>
 
-      <p>count值：{{this.$store.state.count}}</p>
+      <p>count值：c{{this.$store.state.count}}</p>
       <button @click="addFun">+</button>
       <button @click="reductionFun">-</button>
-      <p>{{count1}}</p>
+      <p>d{{count1}}</p>
+      <p>{{list}}</p>
     </div>
-    <p>sfjdk</p>
+    <!-- <p>sfjdk</p> -->
     <first-compute></first-compute>
   </div>
 </template>
@@ -28,16 +29,21 @@ export default {
   },
   computed: {
     ...mapState({
-      count1: state => state.count
-    })
+      count1: state => state.count,
+      // list:state => state.list,
+      
+    }),
+
   },
   methods: {
-    // addFun() {
-    //   this.$store.dispatch("add");
-    // },
-    // reductionFun() {
-    //   this.$store.dispatch("reduction", 5);
-    // }
+    addFun() {
+      this.$store.dispatch("add");
+    },
+    reductionFun() {
+      this.$store.dispatch("reduction", 5);  
+        
+    },
+
   }
 };
 </script>

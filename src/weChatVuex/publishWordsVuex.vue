@@ -25,21 +25,22 @@
 </template>
 
 <script>
-import vList from "./vList";
+// import vList from "./vList";
+import { mapState, mapActions } from "vuex";
 var  pasteStatus = false;
 export default {
-  name: "publishWords",
+  name: "publishWordsVuex",
   components: {
-    vList
+
   },
   data() {
     return {
-      // text:'hello'
+
       message: "",
-      list: [],
-    
+      // list: '',    
     };
   },
+
   mounted : function () {
     this.$nextTick(function(){
         document.querySelector('#editor').addEventListener('paste', pasteFunction=>{
@@ -47,7 +48,11 @@ export default {
         console.log(pasteStatus)
       })
     })
-
+  },
+  computed:{
+  //  ...mapState({
+  //     list:state => state.list
+  //  })
   },
   methods: {
     submit: function() { 
@@ -55,35 +60,17 @@ export default {
 				window.alert("请输入留言内容")
 			  return
       }     
-        // console.log(pasteStatus)
-      // let test1 = document.querySelector('textarea')
-      // test1.onpaste = e =>{
-      //    let clipboardData = (e.clipboardData || window.clipboardData); // 兼容处理
-
-      //   console.log('要粘贴的数据', clipboardData.getData('text'));
-      // }
-      // let pasteEle= document.querySelector('textarea')
-      // pasteEle.addEventListener("paste", function (e){
-      //   if ( !(e.clipboardData && e.clipboardData.items) ) {
-      //     console.log("复制的文字");
-      //     return;
-      //     }
-      //   });
-
-
-      var comment = {"pasteStatus": pasteStatus, message: this.message }; //组织一个最新的数据对象
+      // console.log(this.list)
+      var comment = {"pasteStatus": pasteStatus, message: this.message };  //组织一个最新的数据对象
       
-      //在保存最新数据之前，先从本地localStorag 进行数据获取，并转换为一个数组对象，如果为空，则返回一个‘[]’让json.parse去转换
-      var list = JSON.parse(localStorage.getItem("cmts") || "[]");  
-                                                                 
-      list.unshift(comment);   //改变数组的长度，把参数插入数组的头部。
+      this.$store.dispatch("inputMessage",comment)
+      // this.list.unshift(comment);
       
-      //把最新的评论列表数组，再次调用JOSN.stringify转为数组字符串，最后调用localStorage.setItem保存
-      window.localStorage.setItem("cmts", JSON.stringify(list));
       this.message = "";
       this.pasteStatus = ""
-      this.$router.push({path:'/vList'})	
+      this.$router.push({path:'/vListVuex'})	
     },
+
     updateValue: function(event) {
       this.$emit("input", event.target.value);
     },
@@ -91,7 +78,7 @@ export default {
       this.$refs.message.focus();
     }
   },
-  computed: {}
+
 }
 </script>
 

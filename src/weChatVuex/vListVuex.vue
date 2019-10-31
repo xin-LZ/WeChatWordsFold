@@ -13,22 +13,25 @@
   </div>
 </template>
 <script>
-export default {
+import { mapState, mapActions, mapGetters } from "vuex";
 
+export default {
+  name:"vListVuex",
   data(){
     return{
       // list:[],
       // buttonShow:[],
       isActive: true,
       hasError: false
-
     }
   },
   created(){
     this.getList()
   },
   computed:{
-    
+     ...mapGetters({
+      list: 'sendMessage'
+    })
   },
   mounted:function(){
 
@@ -36,19 +39,17 @@ export default {
   methods: {
   
     getList:function(){
-      var list = JSON.parse(localStorage.getItem("cmts") || '[]') 
-      this.list=list 
-      console.log(list);
-      
-      // console.log(this.list[1].pasteStatus)
-      let newArr = list.map(val => val.message)
-      // console.log(newArr[0].length);
-      // console.log(list.length);
 
-      for(var i=0; i < list.length; i++ ){
-        // console.log(list[i])
-        if(list[i].pasteStatus === false){
-          if(list[i].message.length < 100){
+      // console.log(this.list[1].pasteStatus)
+      // let newArr = list.map(val => val.message)
+      // console.log(newArr[0].length);
+      console.log(this.list);
+      console.log(this.list.length);
+      // console.log(this.list[0].message);
+
+      for(var i=0; i < this.list.length; i++ ){
+        if(this.list[i].pasteStatus === false){
+          if(this.list[i].message.length < 100){
             this.list[i].show = false
             this.list[i].isActive= true
             this.list[i].hasError= false
@@ -59,7 +60,7 @@ export default {
           }
           
         }else{
-          if(list[i].message.length < 100){
+          if(this.list[i].message.length < 100){
             this.list[i].show = false
             this.list[i].isActive= true
             this.list[i].hasError= false
@@ -72,7 +73,6 @@ export default {
           this.list[i].show=false
          }
       }
-      // console.log(list)
     
 
      },

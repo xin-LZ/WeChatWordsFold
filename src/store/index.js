@@ -3,34 +3,65 @@ import  Vuex from 'vuex'
 
 Vue.use(Vuex);
 
-const store = new Vuex.Store({
-  state:{
-    count:3
-  },
-  getters:{
-    increament:function(state){
-      return state.count + 1
+   /*第一次学习用vuex*/
+const state={
+  count:3,
 
-    },
+  list:[
+    // pasteStatus: '',
+    // message: ''
+  ]
+
+};
+const getters={
+  increament:function(state){
+    return state.count + 1
   },
-  mutations:{
+
+  sendMessage:function(state){
+    return state.list
+  }
+
+};
+
+ const  mutations={
     add(){
-      this.state.count = this.state.count +1;
+      this.state.count = this.state.count +1
     },
     reduction(state,n){
       this.state.count -= n
+    },
+
+    inputMessage(state,comment){
+      // this.state.list = this.state.list+comment
+      this.state.list.unshift(comment);
     }
-  },
-  actions:{
-  add(context){
-    context.commit("add")
-  },
+
+  };
+
+  const actions={
+    add(context){
+      context.commit("add")
+    },
     reduction(context,n){
-    context.commit("reduction",n);
+      context.commit("reduction",n);
+    },
+
+    inputMessage(context,comment){
+      context.commit("inputMessage",comment)
     }
-  },
+  };
+
+const store = {
+ 
+}
+
+/*第二次学习用vuex*/
+
+export default new Vuex.Store ({
+  store,
+  state,
+  getters,
+  mutations,
+  actions
 })
-
-
-
-export default store
