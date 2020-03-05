@@ -17,9 +17,6 @@ export default {
 
   data(){
     return{
-      
-      // list:[],
-      // buttonShow:[],
       isActive: true,
       hasError: false
     }
@@ -28,17 +25,16 @@ export default {
     this.getList()
   },
   computed:{
-
   },
   mounted:function(){
-
   },
   methods: {
+ 
     getList:function(){
       var list = JSON.parse(localStorage.getItem("cmts") || '[]') 
       this.list=list 
       console.log(list);
-      let newArr = list.map(val => val.message)
+      
       for(var i=0; i < list.length; i++ ){
         if(list[i].pasteStatus === false){
           if(list[i].message.length < 100){
@@ -67,12 +63,8 @@ export default {
       }
      },
     listChange:function(e){
-
-    }  
+    }
   },
-  watch:{
-    
-  }
   
 }
 </script>

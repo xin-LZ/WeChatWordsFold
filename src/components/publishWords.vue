@@ -80,6 +80,7 @@ export default {
       
       //把最新的评论列表数组，再次调用JOSN.stringify转为数组字符串，最后调用localStorage.setItem保存
       window.localStorage.setItem("cmts", JSON.stringify(list));
+      console.log(list)
       this.message = "";
       this.pasteStatus = ""
       this.$router.push({path:'/vList'})	
