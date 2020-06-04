@@ -5,10 +5,11 @@
     <img src="../images/businessPlatform/coupon/secondCoupon_close.png" alt="" class="secondCoupon_close">
     <div class="secondCoupon_result_body">
       <ul class="secondCoupon_result_wrapper">
-       d.forEach(function(data,index){ 
+       d.forEach(function(data,index){
          if(isTitleFlag){
         <div class="title_box hidden">
           <div class="secondCoupon_result_title">
+
             <div class="title_left"></div>
             <span>恭喜你获得以下奖励</span>
             <div class="title_right"></div>
@@ -82,7 +83,7 @@
          }
          })
 
-       if(draw_data){ 
+       if(draw_data){
         <li class="draw">
           <div class="secondCoupon_result_title">
             <div class="title_left"></div>
